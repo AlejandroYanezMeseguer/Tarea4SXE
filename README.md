@@ -50,3 +50,67 @@ http://10.0.9.90/info.php
 ###### Comprobamos que entra
 
 ![](img/1.png)
+
+#### 2. Utiliza esta guía para instalar wordpress en el contenedor.
+
+##### Lo primero que debemos hace es descargar curl con el siguiente comando
+```
+apt-get update && apt-get install -y curl     #Copiar para insalar curl
+```
+
+##### A continuacion instalaremos todas las dependencias necesarias para la correcta instalacion de wordpress usand el siguiente comando
+```
+sudo apt install apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \        #Copiar para instalar las dependencas
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
+```
+##### Lo siguiente sera crear el directorio de instalacion y descargar el archivo de instalacion de wordpress, esto lo haremos en un mismo comando aunque son varios por separado
+```
+sudo mkdir -p /srv/www
+sudo chown www-data: /srv/www                                        #Copiar para crear el directorio de instalacion y desargar ela rchivo de instalacion
+curl https://wordpress.org/latest.tar.gz | tar zx -C /srv/www
+```
+##### Crearemos el archivo de configuracion de wordPress para apache
+```
+nano /etc/apache2/sites-available/wordpress.conf    #Copiar para crear el archivo
+```
+##### Una vez hecho eso saldra el siguiente editor de texto donde pegaremos el texto de configuracion
+```
+<VirtualHost *:80>
+    DocumentRoot /srv/www/wordpress
+    <Directory /srv/www/wordpress>
+        Options FollowSymLinks
+        AllowOverride Limit Options FileInfo
+        DirectoryIndex index.php
+        Require all granted
+    </Directory>
+    <Directory /srv/www/wordpress/wp-content>
+        Options FollowSymLinks
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+![](img/2.png)
+
+##### A continuacion tendremos que hacer habilitar wordpress Para ello haremos los siguientes comando es orden
+```
+a2ensite wordpress     #A continuacion con este comando habilitaremos wordpress
+
+sudo a2enmod rewrite      #Con este reescribiremos la url
+
+sudo a2dissite 000-default     #Por ultimo usamos este comando para eliminar la pagina por defecto de wordpress y reiniciamos y recargamos apache2 para aplicar toda la config
+service apache2 reload
+service apache2 restart
+``` 
