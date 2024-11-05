@@ -113,4 +113,23 @@ sudo a2enmod rewrite      #Con este reescribiremos la url
 sudo a2dissite 000-default     #Por ultimo usamos este comando para eliminar la pagina por defecto de wordpress y reiniciamos y recargamos apache2 para aplicar toda la config
 service apache2 reload
 service apache2 restart
-``` 
+```
+
+##### Despues configuraremos la base de datos, para ello entraremos en mysql cn el siguiente comando
+```
+mysql -u root
+```
+##### Una vez hecho eso pondremos la siguiente configuracion
+```
+CREATE DATABASE wordpress;
+CREATE USER 'wordpress'@'localhost' IDENTIFIED BY '<your-password>';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON wordpress.* TO 'wordpress'@'localhost';
+FLUSH PRIVILEGES;
+QUIT;
+                        #Cambiar usuario y cotraseña a eleccion
+```
+##### Por ultimo pegaremos lo siguiente en el navegador para ver si la instalacion fue correctamente y nos deja acceder a wordpress
+```
+http://10.0.9.90:8080/wp-admin/setup-config.php
+```
+![](img/3.png)
