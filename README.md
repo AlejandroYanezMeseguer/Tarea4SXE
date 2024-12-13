@@ -133,3 +133,9 @@ QUIT;
 http://10.0.9.90:8080/wp-admin/setup-config.php
 ```
 ![](img/3.png)
+
+![](img/7.png)
+
+![](img/8.png)
+
+![](img/9.png)
