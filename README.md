@@ -134,8 +134,18 @@ http://10.0.9.90:8080/wp-admin/setup-config.php
 ```
 ![](img/3.png)
 
+##### Una vez dentro de wordpress configuraremos el idioma que queremos para nuestro sitio
+
 ![](img/7.png)
+
+##### Creamos un usuario y una contraseña para acceder al sitio y le damos a siguiente
 
 ![](img/8.png)
 
+##### Nos pedira que iniciemos sesion para entrar y utilizamos el usuario anteriormente creado
+
 ![](img/9.png)
+
+##### Ya estariamos dentro de wordpress
+
+![](img/10.png)
